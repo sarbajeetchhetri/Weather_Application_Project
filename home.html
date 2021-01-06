@@ -16,7 +16,7 @@
         }
 
         body {
-            background: #f3f2ef;
+            background:#f3f2ef;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -221,18 +221,31 @@
         </div>
     </div>
     <div class="information">
-        <h2 class="location"><i class="fas fa-street-view " style="color: #fff"></i>Kathmandu</h2>
+        <h2 class="location"><i class="fas fa-street-view " style="color: #fff"></i>{%location%}, {%country%}</h2>
         <p id="date">Tuesday| feb  5|7:32PM </p>
-        <h1 class="temp">13 degree C</h1>
-        <h3 class="tempmin_max">Min 9 degree C | Max 19 degree C </h3>
+        <h1 class="temp">{%tempval%}°C</h1>
+        <h3 class="tempmin_max">Min {%tempmin%}°C | Max {%tempmax%}°C </h3>
     </div>
 
     <script>
         const currentDate = document.getElementById("date");
         let weathercon = document.getElementById("weathercon");
 
-        const tempStatus = "Clouds";
-
+        const tempStatus = "{%tempstatus%}";
+          //condition to check sunny or cloudy
+      if (tempStatus == "Sunny") {
+        weathercon.innerHTML =
+          "<i class='fas  fa-sun' style='color: #eccc68;'></i>";
+      } else if (tempStatus == "Clouds") {
+        weathercon.innerHTML =
+          "<i class='fas  fa-cloud' style='color: #f1f2f6;'></i>";
+      } else if (tempStatus == "Rainy") {
+        weathercon.innerHTML =
+          "<i class='fas  fa-cloud-rain' style='color: #a4b0be;'></i>";
+      } else {
+        weathercon.innerHTML =
+          "<i class='fas  fa-cloud' style='color:#f1f2f6;'></i>";
+      }
         const getcurrentDay = () => {
 
             var weekday = new Array(7);
